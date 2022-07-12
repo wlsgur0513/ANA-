@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mainpage.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <title>Sunrin_iter</title>
+    <script type="text/javascript">
+    </script>
+    <style>
+        .intro_bg{
+            background-image: url( "{% static 'image/배경.jpg' %}");
+        }
+        input[id="menuicon"] {display:none;}
+        input[id="menuicon"] + label {display:block;width:44px;height:24px;position:relative;cursor:pointer;}
+        input[id="menuicon"] + label span {display:block;position:absolute;width:100%;height:5px;border-radius:30px;background:#000;transition:all .35s;}
+        input[id="menuicon"] + label span:nth-child(1) {top:0;}
+        input[id="menuicon"] + label span:nth-child(2) {top:50%;transform:translateY(-50%);}
+        input[id="menuicon"] + label span:nth-child(3) {bottom:0;}
+        input[id="menuicon"]:checked + label {z-index:2;}
+        input[id="menuicon"]:checked + label span {background:#fff;}
+        input[id="menuicon"]:checked + label span:nth-child(1) {top:50%;transform:translateY(-50%) rotate(45deg);}
+        input[id="menuicon"]:checked + label span:nth-child(2) {opacity:0;}
+        input[id="menuicon"]:checked + label span:nth-child(3) {bottom:50%;transform:translateY(50%) rotate(-45deg);}
+        div[class="sidebar"] {width:300px;height:100%;background:#222;position:fixed;top:0;left:-300px;z-index:1;transition:all .35s;border-radius: 0px 5px 5px 0px;}
+        input[id="menuicon"]:checked + label + div {left:0;}
+        .center {
+            position:relative;
+            width: 100px;
+            height: 100px;
+            top: -60px;
+            left: 25px;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Black+Han+Sans&family=Dongle&family=Edu+TAS+Beginner&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+        <div class="wrap">
+            <div class="intro_bg">
+                <div class="header" id="link_header"></div>
+                <div class="center">
+                    <input type="checkbox" id="menuicon">
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <ul class="nav1">
+                            <li><a href="{% url 'pybo:index' %}">질문 게시판</a></li>
+                            <li><a href="#link_main_text1">채팅방</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a class="nav-link_iter" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a></li>
+                            {% else %}
+                            <li><a class="nav-link_iter" href="{% url 'common:login' %}">로그인</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="intro_portfolio">
+                    <h1>Portfolio</h1>
+                    <ul class="box">
+                        <div onclick="location.href='{% url 'page:plan' %}'">
+                            <li>
+                                Planning
+                            </li>
+                            </div>
+                            <div onclick="location.href='{% url 'page:dev' %}'">
+                            <li>
+                                Development
+                            </li>
+                            </div>
+                            <div onclick="location.href='{% url 'page:sour' %}'">
+                            <li>
+                                Sources
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="img_color">
+                    <div class="intro_text">
+                        <h1>Iter</h1>
+                        <h4>개인 포트폴리오에 오신 것을 환영합니다!</h4>                    
+                    </div>
+                    <div class="img_arrow">
+                        <div class="position">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="110" height="110" viewBox="0 0 110 110">
+                                <image id="premium-icon-direction-arrow-4939761" width="110" height="110" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAB2AAAAdgB+lymcgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHKSURBVHic7dk9axRRFAbgR8cuGLQztWAjQrAQQbQWvxBEsJAoWCj+D7EWCyGVqCmDiCBYCv4EsbaxUbAxmE93LBYhrGvmTvTO3Z2cB26zXHbec1hm7wchhBBCCCGEEEKYQIexiC/4hlc4UTRRh+bwCfXIWMH5crG689qfxf8ea7hYLlp+cxj4ewNqrONyqYC5zdu5+O1NuFooY1Yz+CGtCRu4ViZmXg+kNaDGJq6XiZlPhWXtmnCjSNKMKryQ3oQtLBRJmlGF59o14VaRpBlVeCa9CQPcK5I0owpPtWvC/Z2+cF/DA4/h4L8kzqDCI5xOnF8b/hIW2zzkLD5K7/SkjwHuphZ/UvoCZJrGFs6lNODNBITNNd6OFjvuHbBiuAzto++Y3f7B/kJBSqlHPxjXgHcdBCnlfcqkef18CW5K/+t0Bh8mIPT/Gj9xe1yhTQuhozjUMKdrFR7jVOL8Ae4YriCnXtv9QK82RbvZEfZmW7ybM4GbRZJmUGHJHi3+gHZHYht6di74ULvie3UyPINVacX38m6gzcXIlUIZszqi+WpsDZdKBexC0+XohXLRurHnr8cZ7kWe4DO+4iWOF00UQgghhBBCCCFMt183GAcC7O7PtAAAAABJRU5ErkJggg=="/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_text0" id="link_main_text0">
+                <h1>Project</h1>
+                <div class="contents1">다양하고 새로운 기능과 웹사이트를 만나보실 수 있습니다.</div>
+                
+                <ul class="icons">
+                    <li>
+                        <div class="icon_img" onclick="location.href='{% url 'pybo:index' %}'">
+                            <img src="{% static 'image/board.png' %}" width="109.4px" height="109.4px">
+                        </div>
+                        <div class="contents1_bold">게시판</div>
+                        <div class="contents2">
+                            사용자가 다양한 질문을 검색할 수 있습니다.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon_img" onclick="location.href='http://127.0.0.1:3000/'">
+                            <img src="{% static 'image/speak.png' %}" width="109.4px" height="109.4px">
+                        </div>
+                        <div class="contents1_bold">채팅방</div>
+                        <div class="contents2">
+                            사용자가 다른 사용자와 채팅을 할 수 있습니다.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon_img" onclick="location.href='https://github.com/wlsgur0513'">
+                            <img src="{% static 'image/github-logo1.png' %}" width="109.4px" height="109.4px">
+                        </div>
+                        <div class="contents1_bold">github</div>
+                        <div class="contents2">
+                            각 프로젝트의 코드를 방문할 수 있습니다.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="main_text1">
+                <div class="link_1">
+                    <div class="subject">Portfolio Adobe XD</div>
+                    <div class="content">더 자세한 페이지 구성이</div>
+                    <div class="content">궁금하다면?</div>
+                    <button class="btn" onclick="location.href='https://xd.adobe.com/view/048ffdbb-bc0b-413a-a0cd-4e5b3c2a8158-51dc/' ">바로 가기</button>
+                </div>
+                <div class="link_2">
+                    <div class="subject">Portfolio Concept</div>
+                    <div class="content">한눈에 각 컨셉들을 확인</div>
+                    <div class="content">하고 싶다면?</div>
+                    <button class="btn" onclick="location.href='https://docs.google.com/presentation/d/1qbyZ6Cf9G_Eqemp8mfGfgLCspyvECOmYs_s6b7bxsc0/edit?usp=sharing'">바로 가기</button>
+                </div>
+            </div>
+            <div class="main_text2">
+                <div class="header">
+                    <ul class="nav">
+                        <li><a href="">Sunrin</a></li>
+                        <li><a href="https://www.google.co.kr/?safe=active&ssui=on">Google</a></li>
+                        <li><a href="https://www.youtube.com/">Youtube</a></li>
+                    </ul>
+                </div>
+                <br>
+                <br>
+                <hr>
+                <span>© 2022. Iter all rightss reserved.</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

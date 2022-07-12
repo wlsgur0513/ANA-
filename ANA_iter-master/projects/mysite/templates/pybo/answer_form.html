@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/answer_form.css' %}">
+<style>
+    .intro_bg{
+        background-image: url( "{% static 'image/intro2.jpg' %}");
+    }
+</style>
+<div class="wrap">
+    <div class="intro_bg">
+        <div class="table_main0">
+            <div class="table_main1">
+                <br><br>
+                <div class="container my-3">
+                    <form method="post" class="post-form">
+                        {% csrf_token %}
+                        <!-- 오류표시 Start -->
+                        {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                        {% for field in form %}
+                            {% if field.errors %}
+                            <strong>{{ field.label }}</strong>
+                            {{ field.errors }}
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        {% endif %}
+                        <!-- 오류표시 End -->
+                        <div class="form-group">
+                            <label for="content">답변내용</label>
+                            <textarea class="form-control" name="content" id="content" 
+                                      rows="10">{{ form.content.value|default_if_none:'' }}</textarea>
+                        </div>
+                        <button type="submit" class="btn_iter">저장하기</button>
+                    </form>
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
+{% endblock %}

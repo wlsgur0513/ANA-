@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>AnA</title>
+</head>
+<body>
+    <div class="join-container">
+        <header class="join-header">
+            <h1>AnA chat</h1>
+        </header>
+        <main class="join-main">
+            <form action="chat.html">
+                <div class="form-control">
+                    <label for="username">닉네임</label>
+                    <input
+                        type="text" 
+                        name="username" 
+                        id="username"
+                        placeholder="닉네임"
+                    >
+                </div>
+                
+                <div class="form-control">
+                    <label for="room">서버</label>
+                    <select name="room" id="room">
+                        <option>AnA</option>
+                    </select>
+                </div>
+                <button class="btn">서버입장</button>
+            </form>
+        </main>
+
+        <a href="http://127.0.0.1:8000/mainpage/" class="ANA_site">ANA메인</a>
+    </div>
+</body>
+</html>

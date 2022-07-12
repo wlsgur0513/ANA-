@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>AnA</title>
+	</head>
+	<body>
+		<div class="join-container">
+			<header class="join-header">
+				<h1>AnA chat</h1>
+			</header>
+			<main class="join-main">
+				<form action="chat.html">
+					<div class="form-control">
+						<label for="username">닉네임</label>
+						<input
+							type="text"
+							name="username"
+							id="username"
+							placeholder="닉네임을 설정해보자..."
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label for="room">서버</label>
+						<select name="room" id="room">
+							<option value="AnA">AnA</option>
+							<option value="App:ple Pi">App:ple Pi</option>
+							<option value="EDCAN">EDCAN</option>
+							<option value="IWOP">IWOP</option>
+							<option value="RG">RG</option>
+							<option value="Zer0pen">Zer0pen</option>
+						</select>
+					</div>
+					<button type="submit" class="btn">서버 입장</button>
+				</form>
+			</main>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,327 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+
+.intro_bg{
+    width: 96rem;
+    height: 750px;
+}
+
+.intro_bg:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.37);
+}
+.header{
+    position: absolute;
+    display: flex;
+    width: 1280px;
+    margin: 0px 119px ;
+    height: 86px;
+}
+.nav-link_iter:hover{
+    text-decoration: none;
+}
+.searchArea {
+    width: 300px;
+    height: 40px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    margin-top: 24px;
+}
+
+.searchArea > form > input {
+    border:none;
+    width: 250px;
+    height: 40px;
+    background: rgb(0, 0, 0, 0.0);
+    color: #fff;
+    padding-left: 10px;
+}
+.searchArea > form > span{
+    width: 50px;
+    color:#fff;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+.nav{
+    display: flex;
+    justify-content: flex-start;
+    line-height: 86px;
+    width:calc(1280px - 300px);
+}
+
+.nav > li{
+    margin-left: 84px;
+}
+
+.nav > li > a {
+    color: #fff;
+}
+
+.btn1_iter {
+    position: relative;
+    left:255.5px;
+    top:-31.5px;
+}
+
+.table_main0 {
+    width: 96rem;
+    height: 664px;
+    top: 86px;
+    position: absolute;
+}
+.table_main0:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.185);
+}
+.table_main1 {
+    background-color: #f2f2f3;
+    width: 82rem;
+    height: 664px;
+    margin: 0px 112px 0px 112px;
+    position: absolute;
+    border-radius: 30px;
+} 
+.table_line1 {
+    position: relative;
+    top: 30px;
+    width: 100%;
+    height: 75px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+.table_iter {
+    position: relative;
+    top: 50px;
+    width: 1000px;
+    border-collapse: collapse;
+    table-layout: fiexd;
+    margin: 0px 156px 0px 156px;
+}
+.td_iter,.th_iter {
+    border-bottom: 1px solid
+    lightgray;
+    text-align: center;
+    padding: 5px;
+    font-size: 25px;
+}
+.th_iter {
+    background-color: black;
+    color: #fff;
+}
+.text-danger_iter {
+    color:rgb(82, 82, 82);
+}
+
+.a_iter {
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+
+.a_iter:hover {
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+
+.btn_iter {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    color: black;
+    text-align: center;
+    border-radius: 5px;
+    left:157px;
+    top:70px;
+    padding:10px;
+    border: 2px solid #6c757d;
+    text-decoration: none;
+}
+
+.btn_iter:hover {
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 10px;
+    color: white;
+    background-color:black;
+    transition: all 0.4s;
+}
+
+.pagination_iter{
+    position: relative;
+    top: 70px;
+}
+
+.page-link_iter{
+    position:relative;
+    display:block;
+    padding:.5rem .75rem;
+    margin-left:-1px;
+    line-height:1.25;
+    color:black;
+    text-decoration: none;
+    border:1px solid #dee2e6
+}
+
+.page-link_iter:hover{
+    z-index:2;
+    color:black;
+    text-decoration:none;
+    background-color:#e9ecef;
+    border-color:#dee2e6
+}
+    
+.page-link_iter:focus{
+    z-index:3;
+    outline:0;
+    box-shadow:0 0 0 .2rem rgba(0,123,255,.25)
+}
+
+.page-item:first-child .page-link_iter{
+    margin-left:0;
+    border-top-left-radius:.25rem;
+    border-bottom-left-radius:.25rem
+    }.page-item:last-child .page-link{border-top-right-radius:.25rem;
+    border-bottom-right-radius:.25rem
+}
+
+.page-item.active .page-link_iter{
+    z-index:3;
+    color:#fff;
+    background-color:black;
+    border-color:black
+}
+
+.page-item.disabled .page-link_iter{
+    color:#6c757d;
+    pointer-events:none;
+    cursor:auto;
+    text-decoration: none;
+    border-color:#dee2e6
+}
+
+.pagination-lg .page-link_iter {
+    padding:.75rem 1.5rem;
+    font-size:1.25rem;
+    line-height:1.5
+}
+
+.pagination-lg .page-link_iter:first-child .page-link_iter {
+    border-top-left-radius:.3rem;
+    border-bottom-left-radius:.3rem 
+}
+
+.pagination-lg .page-link_iter:last-child .page-link_iter{
+    border-top-right-radius:.3rem;
+    border-bottom-right-radius:.3rem
+}
+
+.pagination-sm .page-link_iter{
+    padding:.25rem .5rem;
+    font-size:.875rem;
+    line-height:1.5
+}
+
+.pagination-sm .page-link_iter:first-child .page-link_iter{
+    border-top-left-radius:.2rem;
+    border-bottom-left-radius:.2rem
+}
+
+.pagination-sm .page-link_iter:last-child .page-link_iter{
+    border-top-right-radius:.2rem;
+    border-bottom-right-radius:.2rem
+}
+
+@media screen and (min-width:97rem) {
+    .intro_bg{
+        width: 120rem;
+        height: 966px;
+    }
+
+    .header{
+        position: absolute;
+        display: flex;
+        width: 1280px;
+        margin: 0px 311px ;
+        height: 86px;
+    }
+
+    .table_main0:before {
+        content: '';
+        position: absolute;
+        width: 120rem;
+        height: 880px;
+        background-color: rgba(255, 255, 255, 0.185);
+    }
+
+    .table_main1 {
+        background-color: #f2f2f3;
+        width: 105.9rem;
+        height: 880px;
+        margin: 0px 112px 0px 112px;
+        position: absolute;
+    } 
+
+    .table_iter {
+        position: relative;
+        top: 50px;
+        width: 1359px;
+        border-collapse: collapse;
+        table-layout: fiexd;
+        margin: 0px 156px 0px 156px;
+    }
+    .td_iter,.th_iter {
+        border-bottom: 1px solid
+        lightgray;
+        text-align: center;
+        padding: 5px;
+        font-size: 30px;
+    }
+    
+    .btn_iter {
+        position: relative;
+        width: 120px;
+        height: 40px;
+        color: black;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 24px;
+        left:157px;
+        top:90px;
+        padding:10px;
+        border: 2px solid #6c757d;
+        text-decoration: none;
+    }
+
+    .pagination_iter{
+        position: relative;
+        top: 85px;
+        font-size: 22px;
+    }
+}

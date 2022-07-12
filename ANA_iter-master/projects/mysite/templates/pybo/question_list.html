@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/question_list.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <title>ANA</title>
+    <style>
+        .intro_bg{
+            background-image: url( "{% static 'image/intro2.jpg' %}");
+        }
+    </style>
+    {% load pybo_filter %}
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $(".page-link").on('click', function() {
+                $("#page").val($(this).data("page"));
+                $("#searchForm").submit();
+            });
+        
+            $("#btn_search").on('click', function() {
+                $("#kw").val($(".kw").val());
+                $("#page").val(1);  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+                $("#searchForm").submit();
+            });
+        });
+        </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header" id="link_header">
+                <ul class="nav">
+                    <li><a class="nav-link_iter" href="{% url 'mainpage:index' %}">ANA</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a class="nav-link_iter" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a></li>
+                    {% else %}
+                    <li><a class="nav-link_iter" href="{% url 'common:login' %}">로그인</a></li>
+                    {% endif %}
+                </ul>
+                <div class="searchArea">
+                    <form>
+                        <input type="search" placeholder="Search" class="form-control kw" value="{{ kw|default_if_none:'' }}">
+                        <span class="btn1_iter" type="button" id="btn_search">검색</span>
+                    </form>
+                </div>
+            </div>
+            <div class="table_main0">
+                <div class="table_main1">
+                    <div class="table_line1">
+                        질문 게시판
+                    </div>
+
+
+                    <table class="table_iter">
+                        <thead>
+                        <tr class="text-center">
+                            <th class="th_iter">번호</th>
+                            <th class="th_iter" style="width:50%">제목</th>
+                            <th class="th_iter">글쓴이</th>
+                            <th class="th_iter">작성일시</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if question_list %}
+                        {% for question in question_list %}
+                        <tr class="text-center">
+                            <td class="td_iter">
+                                <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                                {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
+                            </td>
+                            <td class="text-left td_iter">
+                                <a class="a_iter" href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                                {% if question.answer_set.count > 0 %}
+                                <span class="text-danger_iter small ml-2">{{ question.answer_set.count }}</span>
+                                {% endif %}
+                            </td>
+                            <td class="td_iter">{{ question.author.username }}</td>  <!-- 글쓴이 추가 -->
+                            <td class="td_iter">{{ question.create_date }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td class="td_iter" colspan="3">질문이 없습니다.</td>
+                        </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                    <div class="pagination_iter">
+                    <!-- 페이징처리 시작 -->
+                    <ul class="pagination justify-content-center">
+                        <!-- 이전페이지 -->
+                        {% if question_list.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link_iter" data-page="{{ question_list.previous_page_number }}" href="?page={{ question_list.previous_page_number }}">이전</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link_iter" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                        </li>
+                        {% endif %}
+                        <!-- 페이지리스트 -->
+                        {% for page_number in question_list.paginator.page_range %}
+                        {% if page_number >= question_list.number|add:-3 and page_number <= question_list.number|add:3 %}
+                            {% if page_number == question_list.number %}
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link_iter" data-page="{{ page_number }}" href="?page={{ page_number }}">{{ page_number }}</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link_iter" data-page="{{ page_number }}" href="?page={{ page_number }}">{{ page_number }}</a>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        <!-- 다음페이지 -->
+                        {% if question_list.has_next %}
+                        <li class="page-item">
+                            <a class="page-link_iter" data-page="{{ question_list.next_page_number }}" href="?page={{ question_list.next_page_number }}">다음</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link_iter" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <!-- 페이징처리 끝 -->
+                    </div>
+
+                    <a href="{% url 'pybo:question_create' %}" class="btn_iter">질문 등록하기</a>
+                </div>
+                <form id="searchForm" method="get" action="{% url 'index' %}">
+                    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+                    <input type="hidden" id="page" name="page" value="{{ page }}">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

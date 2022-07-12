@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Planning.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <title>Sunrin_iter</title>
+    <script type="text/javascript">
+    </script>
+    <style>
+        .intro_bg{
+            background-image: url( "{% static 'image/배경.jpg' %}");
+        }
+        input[id="menuicon"] {display:none;}
+        input[id="menuicon"] + label {display:block;width:44px;height:24px;position:relative;cursor:pointer;}
+        input[id="menuicon"] + label span {display:block;position:absolute;width:100%;height:5px;border-radius:30px;background:#000;transition:all .35s;}
+        input[id="menuicon"] + label span:nth-child(1) {top:0;}
+        input[id="menuicon"] + label span:nth-child(2) {top:50%;transform:translateY(-50%);}
+        input[id="menuicon"] + label span:nth-child(3) {bottom:0;}
+        input[id="menuicon"]:checked + label {z-index:2;}
+        input[id="menuicon"]:checked + label span {background:#fff;}
+        input[id="menuicon"]:checked + label span:nth-child(1) {top:50%;transform:translateY(-50%) rotate(45deg);}
+        input[id="menuicon"]:checked + label span:nth-child(2) {opacity:0;}
+        input[id="menuicon"]:checked + label span:nth-child(3) {bottom:50%;transform:translateY(50%) rotate(-45deg);}
+        div[class="sidebar"] {width:300px;height:100%;background:#222;position:fixed;top:0;left:1519px;z-index:1;transition:all .35s;border-radius: 0px 5px 5px 0px;}
+        input[id="menuicon"]:checked + label + div {left:1225px;}
+        .center {
+            position:relative;
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            left: 1425px;
+        }
+
+        @media screen and (min-width:97rem) {
+            div[class="sidebar"] {
+                width:300px;
+                height:100%;
+                background:#222;
+                position:fixed;
+                top:0;
+                left:1902px;
+                z-index:1;
+                transition:all .35s;
+                border-radius: 0px 5px 5px 0px;
+            }
+
+            input[id="menuicon"]:checked + label + div {
+                left:1602px;
+            }
+            .center {
+            position:relative;
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            left: 1815px;
+        }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Black+Han+Sans&family=Dongle&family=Edu+TAS+Beginner&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden">
+        <div class="wrap">
+            <div class="intro_bg">
+                <div class="header" id="link_header"></div>
+                <div class="center">
+                    <input type="checkbox" id="menuicon">
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <ul class="nav1">
+                            <li><a href="{% url 'pybo:index' %}">질문 게시판</a></li>
+                            <li><a href="#link_main_text1">채팅방</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a class="nav-link_iter" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a></li>
+                            {% else %}
+                            <li><a class="nav-link_iter" href="{% url 'common:login' %}">로그인</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="text_box">
+                    <div class="box_subject">portfolio</div>
+                    <div class="content_1">안녕하세요!</div>
+                    <div class="content_1">{{ user.username }}님 Planning에 오신 것</div>
+                    <div class="content_1">을 환영합니다.</div>
+                    <div class="content_2">페이지 기획하면서</div>
+                    <div class="content_2">어떠한 점을 기획했는지</div>
+                    <div class="content_2">확인할 수 있습니다.</div>    
+                </div>
+                <div class="ball">
+                    <div class="ball_subject">Planning</div>
+                    <br>
+                    <div class="ball_content_1">Portfolio를 기획하게 된 동기가 동아리</div>
+                    <div class="ball_content_1">에서 배웠던 내용을 다시 생각해보면서</div>
+                    <div class="ball_content_1">그동안 배웠던 내용과 다양한 포트폴</div>
+                    <div class="ball_content_1">리오의 형식들을 최근에 찾아보다가 </div>
+                    <div class="ball_content_1">"동아리에서 배웠던 내용을 나만의 </div>
+                    <div class="ball_content_1">포트폴리오로 녹여보는 것이 어떨까?"</div>
+                    <div class="ball_content_1">라는 생각이 떠올라 제작하게</div>
+                    <div class="ball_content_1">되었습니다.</div>
+                </div>
+                <div class="intro_portfolio">
+                    <ul class="box">
+                        <div onclick="location.href='{% url 'mainpage:index' %}'">
+                            <li>
+                                Portfolio
+                            </li>
+                            </div>
+                            <div onclick="location.href='{% url 'page:dev' %}'">
+                            <li>
+                                Development
+                            </li>
+                            </div>
+                            <div onclick="location.href='{% url 'page:sour' %}'">
+                            <li>
+                                Sources
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="main_text2">
+                <div class="header">
+                    <ul class="nav">
+                        <li><a href="">Sunrin</a></li>
+                        <li><a href="https://www.google.co.kr/?safe=active&ssui=on">Google</a></li>
+                        <li><a href="https://www.youtube.com/">Youtube</a></li>
+                    </ul>
+                </div>
+                <br>
+                <hr>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
